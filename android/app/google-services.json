@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1085998747750",
+    "project_id": "item-trader-pqjhzi",
+    "storage_bucket": "item-trader-pqjhzi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085998747750:android:3b1f1be4b04161fd1edda7",
+        "android_client_info": {
+          "package_name": "com.mycompany.itemtrader"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDua4bPIKZbNeqP6-ZkcecTL1crpml6GVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
