@@ -271,7 +271,7 @@ class _ProductDetailCopyWidgetState extends State<ProductDetailCopyWidget>
                             carouselController: _model.carouselController ??=
                                 CarouselController(),
                             options: CarouselOptions(
-                              initialPage: min(0, imagelist.length - 1),
+                              initialPage: max(0, min(0, imagelist.length - 1)),
                               viewportFraction: 0.8,
                               disableCenter: true,
                               enlargeCenterPage: true,
@@ -996,6 +996,21 @@ class _ProductDetailCopyWidgetState extends State<ProductDetailCopyWidget>
                                         },
                                       ),
                                     });
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Item saved successfully!',
+                                          style: TextStyle(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                          ),
+                                        ),
+                                        duration: const Duration(milliseconds: 4000),
+                                        backgroundColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondary,
+                                      ),
+                                    );
                                   },
                                   text: 'Save Item',
                                   options: FFButtonOptions(

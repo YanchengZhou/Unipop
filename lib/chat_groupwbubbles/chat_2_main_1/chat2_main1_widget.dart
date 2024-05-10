@@ -148,7 +148,7 @@ class _Chat2Main1WidgetState extends State<Chat2Main1Widget> {
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFFFB8BA),
+                                  color: FlutterFlowTheme.of(context).primary,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 0.0,

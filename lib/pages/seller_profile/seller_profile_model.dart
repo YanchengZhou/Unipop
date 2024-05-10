@@ -13,34 +13,34 @@ class SellerProfileModel extends FlutterFlowModel<SellerProfileWidget> {
   List<ChatsRecord>? sellerquery;
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
   ChatsRecord? newchat1;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
   List<ChatsRecord>? userquery1;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
   List<ChatsRecord>? sellerquery1;
-  // Stores action output result for [Custom Action - getChatDoc] action in Button widget.
+  // Stores action output result for [Custom Action - getChatDoc] action in IconButton widget.
   ChatsRecord? theChat1;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  ChatsRecord? newchat;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ChatsRecord>? userquery2;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ChatsRecord>? sellerquery2;
-  // Stores action output result for [Custom Action - getChatDoc] action in Button widget.
-  ChatsRecord? theChat2;
-  // Stores action output result for [Custom Action - commonExist] action in Button widget.
-  bool? commonExist;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  ChatsRecord? newchat2;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ChatsRecord>? userquery3;
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ChatsRecord>? sellerquery3;
-  // Stores action output result for [Custom Action - getChatDoc] action in Button widget.
-  ChatsRecord? theChat3;
-  // Stores action output result for [Custom Action - getChatDoc] action in Button widget.
-  ChatsRecord? theChat;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  ChatsRecord? newchatCopy;
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
+  List<ChatsRecord>? userquery2Copy;
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
+  List<ChatsRecord>? sellerquery2Copy;
+  // Stores action output result for [Custom Action - getChatDoc] action in IconButton widget.
+  ChatsRecord? theChat2Copy;
+  // Stores action output result for [Custom Action - commonExist] action in IconButton widget.
+  bool? commonExistCopy;
+  // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
+  ChatsRecord? newchat2Copy;
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
+  List<ChatsRecord>? userquery3Copy;
+  // Stores action output result for [Firestore Query - Query a collection] action in IconButton widget.
+  List<ChatsRecord>? sellerquery3Copy;
+  // Stores action output result for [Custom Action - getChatDoc] action in IconButton widget.
+  ChatsRecord? theChat3Copy;
+  // Stores action output result for [Custom Action - getChatDoc] action in IconButton widget.
+  ChatsRecord? theChatCopy;
 
   @override
   void initState(BuildContext context) {}

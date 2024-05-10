@@ -295,83 +295,94 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Container(
-                                          width: 38.0,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                          alignment:
-                                              const AlignmentDirectional(0.0, 0.0),
-                                          child: FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderRadius: 20.0,
-                                            borderWidth: 1.0,
-                                            buttonSize: 40.0,
-                                            fillColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .accent1,
-                                            icon: Icon(
-                                              Icons.clear_sharp,
+                                        if (_model.isFullListShown == false)
+                                          Container(
+                                            width: 38.0,
+                                            height: 50.0,
+                                            decoration: BoxDecoration(
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              size: 24.0,
+                                                      .primary,
                                             ),
-                                            onPressed: () async {
-                                              if (_model.choiceChipsValue ==
-                                                  'All') {
-                                                _model.noSearchAll =
-                                                    await queryItemsRecordOnce(
-                                                  queryBuilder: (itemsRecord) =>
-                                                      itemsRecord
-                                                          .where(
-                                                            'availability',
-                                                            isEqualTo: true,
-                                                          )
-                                                          .orderBy('datePosted',
-                                                              descending: true),
-                                                );
-                                                _model.currentItemList = _model
-                                                    .noSearchAll!
-                                                    .toList()
-                                                    .cast<ItemsRecord>();
-                                              } else {
-                                                _model.noSearchSelected =
-                                                    await queryItemsRecordOnce(
-                                                  queryBuilder: (itemsRecord) =>
-                                                      itemsRecord
-                                                          .where(
-                                                            'type',
-                                                            isEqualTo: _model
-                                                                .choiceChipsValue,
-                                                          )
-                                                          .where(
-                                                            'availability',
-                                                            isEqualTo: true,
-                                                          )
-                                                          .orderBy('datePosted',
-                                                              descending: true),
-                                                );
-                                                setState(() {
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: FlutterFlowIconButton(
+                                              borderColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              borderRadius: 20.0,
+                                              borderWidth: 1.0,
+                                              buttonSize: 40.0,
+                                              fillColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .accent1,
+                                              icon: Icon(
+                                                Icons.clear_sharp,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                size: 24.0,
+                                              ),
+                                              onPressed: () async {
+                                                if (_model.choiceChipsValue ==
+                                                    'All') {
+                                                  _model.noSearchAll =
+                                                      await queryItemsRecordOnce(
+                                                    queryBuilder:
+                                                        (itemsRecord) =>
+                                                            itemsRecord
+                                                                .where(
+                                                                  'availability',
+                                                                  isEqualTo:
+                                                                      true,
+                                                                )
+                                                                .orderBy(
+                                                                    'datePosted',
+                                                                    descending:
+                                                                        true),
+                                                  );
                                                   _model.currentItemList =
-                                                      _model.noSearchSelected!
+                                                      _model.noSearchAll!
                                                           .toList()
                                                           .cast<ItemsRecord>();
+                                                } else {
+                                                  _model.noSearchSelected =
+                                                      await queryItemsRecordOnce(
+                                                    queryBuilder:
+                                                        (itemsRecord) =>
+                                                            itemsRecord
+                                                                .where(
+                                                                  'type',
+                                                                  isEqualTo: _model
+                                                                      .choiceChipsValue,
+                                                                )
+                                                                .where(
+                                                                  'availability',
+                                                                  isEqualTo:
+                                                                      true,
+                                                                )
+                                                                .orderBy(
+                                                                    'datePosted',
+                                                                    descending:
+                                                                        true),
+                                                  );
+                                                  setState(() {
+                                                    _model.currentItemList =
+                                                        _model.noSearchSelected!
+                                                            .toList()
+                                                            .cast<
+                                                                ItemsRecord>();
+                                                  });
+                                                }
+
+                                                setState(() {
+                                                  _model.isFullListShown = true;
                                                 });
-                                              }
 
-                                              setState(() {
-                                                _model.isFullListShown = true;
-                                              });
-
-                                              setState(() {});
-                                            },
+                                                setState(() {});
+                                              },
+                                            ),
                                           ),
-                                        ),
                                       ],
                                     ),
                                   ],
@@ -564,8 +575,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             0.0, 0.0, 0.0, 10.0),
                                         child: Container(
                                           width: double.infinity,
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(0.0),
                                           ),
                                           child: Padding(
                                             padding:
@@ -600,7 +613,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.center,
                                                 children: [
                                                   Builder(
                                                     builder: (context) {
@@ -714,6 +727,26 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           ),
                                                         ),
                                                       ],
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 3.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      width: 370.0,
+                                                      height: 1.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        border: Border.all(
+                                                          color:
+                                                              const Color(0xFFFFB8BA),
+                                                        ),
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

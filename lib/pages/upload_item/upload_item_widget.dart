@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'upload_item_model.dart';
 export 'upload_item_model.dart';
@@ -518,6 +519,9 @@ class _UploadItemWidgetState extends State<UploadItemWidget> {
                                                             .of(context)
                                                         .headlineMediumFamily),
                                               ),
+                                          maxLength: 50,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
                                           cursorColor:
                                               FlutterFlowTheme.of(context)
                                                   .primaryText,

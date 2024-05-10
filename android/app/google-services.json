@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1085998747750:android:3b1f1be4b04161fd1edda7",
+        "mobilesdk_app_id": "1:1085998747750:android:595d94b1cea007d81edda7",
         "android_client_info": {
-          "package_name": "com.mycompany.itemtrader"
+          "package_name": "com.reunitech.unipop"
         }
       },
       "oauth_client": [],

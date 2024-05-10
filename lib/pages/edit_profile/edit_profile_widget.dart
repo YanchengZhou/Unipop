@@ -421,6 +421,21 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             }
 
                             context.pushNamed('profile');
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Profile modified successfully!',
+                                  style: TextStyle(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                                ),
+                                duration: const Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).secondary,
+                              ),
+                            );
                           },
                           text: 'Save changes',
                           options: FFButtonOptions(

@@ -1,5 +1,4 @@
 // Export pages
-export '/sign_in/sign_in_widget.dart' show SignInWidget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/upload_item/upload_item_widget.dart' show UploadItemWidget;
 export '/pages/home/home_widget.dart' show HomeWidget;
@@ -12,9 +11,6 @@ export '/pages/seller_profile/seller_profile_widget.dart'
     show SellerProfileWidget;
 export '/pages/sign_in_up/sign_in_up_widget.dart' show SignInUpWidget;
 export '/test_try/test_try_widget.dart' show TestTryWidget;
-export '/home18_travel/home18_travel_widget.dart' show Home18TravelWidget;
-export '/details03_product_food/details03_product_food_widget.dart'
-    show Details03ProductFoodWidget;
 export '/pages/product_detail_copy/product_detail_copy_widget.dart'
     show ProductDetailCopyWidget;
 export '/chat_groupwbubbles/chat_2_main_1/chat2_main1_widget.dart'
@@ -23,5 +19,3 @@ export '/chat_groupwbubbles/image_details_1/image_details1_widget.dart'
     show ImageDetails1Widget;
 export '/chat_groupwbubbles/chat_details/chat_details_widget.dart'
     show ChatDetailsWidget;
-export '/profile18_user_details_other/profile18_user_details_other_widget.dart'
-    show Profile18UserDetailsOtherWidget;

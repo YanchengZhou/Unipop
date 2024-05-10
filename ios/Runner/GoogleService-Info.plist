@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.itemtrader</string>
+	<string>com.reunitech.unipop</string>
 	<key>PROJECT_ID</key>
 	<string>item-trader-pqjhzi</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1085998747750:ios:e5a25c4f86ddb9b71edda7</string>
+	<string>1:1085998747750:ios:65def6598e1ca4be1edda7</string>
 </dict>
 </plist>

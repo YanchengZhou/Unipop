@@ -21,20 +21,15 @@ List<ItemsRecord>? reverseList(List<ItemsRecord>? inputList) {
   }
 }
 
-DocumentReference? getChat(
-  List<DocumentReference> list1,
-  List<DocumentReference> list2,
-) {
-// Create a set from list1 for faster lookup
-  Set<DocumentReference> set1 = Set.from(list1);
-
-  // Iterate through list2 and check if each element is in set1
-  for (DocumentReference element in list2) {
-    if (set1.contains(element)) {
-      return element;
-    }
+String? getPhone(String? phone) {
+  //   // given a phone number, leave only first two and last 4 digit visible and * for all otther digits
+  if (phone == null || phone.length < 10) {
+    return phone;
   }
-
-  // No common element found
-  return null;
+  final visibleDigits = 6;
+  final firstTwo = phone.substring(0, 2);
+  final lastFour = phone.substring(phone.length - 4);
+  final hiddenDigits = phone.length - visibleDigits;
+  final hidden = List.generate(hiddenDigits, (_) => '*').join();
+  return '$firstTwo$hidden$lastFour';
 }

@@ -1,4 +1,4 @@
-package com.mycompany.itemtrader
+package com.reunitech.unipop
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'sign_in_up_widget.dart' show SignInUpWidget;
 import 'package:flutter/material.dart';
@@ -41,6 +42,10 @@ class SignInUpModel extends FlutterFlowModel<SignInUpWidget> {
   late bool passwordComfirmVisibility;
   String? Function(BuildContext, String?)?
       passwordComfirmTextControllerValidator;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  UsersRecord? admin;
+  // Stores action output result for [Backend Call - Create Document] action in Button widget.
+  ChatsRecord? chat;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;

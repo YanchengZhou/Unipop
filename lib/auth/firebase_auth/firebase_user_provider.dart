@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class ItemTraderFirebaseUser extends BaseAuthUser {
-  ItemTraderFirebaseUser(this.user);
+class UnipopFirebaseUser extends BaseAuthUser {
+  UnipopFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -54,18 +54,17 @@ class ItemTraderFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) =>
-      ItemTraderFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => UnipopFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> itemTraderFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> unipopFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = ItemTraderFirebaseUser(user);
+        currentUser = UnipopFirebaseUser(user);
         return currentUser!;
       },
     );

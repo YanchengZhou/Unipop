@@ -1,11 +1,12 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'delete_dialog_widget.dart' show DeleteDialogWidget;
+import 'chat_details_overlay1_widget.dart' show ChatDetailsOverlay1Widget;
 import 'package:flutter/material.dart';
 
-class DeleteDialogModel extends FlutterFlowModel<DeleteDialogWidget> {
+class ChatDetailsOverlay1Model
+    extends FlutterFlowModel<ChatDetailsOverlay1Widget> {
   ///  Local state fields for this component.
 
-  bool showDelete = false;
+  bool delete = true;
 
   ///  State fields for stateful widgets in this component.
 

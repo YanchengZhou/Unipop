@@ -1,11 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -345,6 +346,383 @@ class _SellerProfileWidgetState extends State<SellerProfileWidget>
                                           ],
                                         ),
                                       ),
+                                    Flexible(
+                                      child: Align(
+                                        alignment:
+                                            const AlignmentDirectional(1.0, -1.0),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 80.0),
+                                          child: FlutterFlowIconButton(
+                                            borderColor: const Color(0xFFFFB8BA),
+                                            borderRadius: 20.0,
+                                            borderWidth: 1.0,
+                                            buttonSize: 40.0,
+                                            fillColor: const Color(0xFFFFB8BA),
+                                            icon: Icon(
+                                              Icons.sms,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              size: 24.0,
+                                            ),
+                                            onPressed: () async {
+                                              if (!(_model.userquery != null &&
+                                                  (_model.userquery)!
+                                                      .isNotEmpty)) {
+                                                var chatsRecordReference1 =
+                                                    ChatsRecord.collection
+                                                        .doc();
+                                                await chatsRecordReference1
+                                                    .set({
+                                                  ...createChatsRecordData(
+                                                    from: currentUserReference,
+                                                    to: widget
+                                                        .sellerInfo?.reference,
+                                                    userA: currentUserReference,
+                                                    userB: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'sendTime': FieldValue
+                                                          .serverTimestamp(),
+                                                      'users': [
+                                                        currentUserReference
+                                                      ],
+                                                    },
+                                                  ),
+                                                });
+                                                _model.newchat1 = ChatsRecord
+                                                    .getDocumentFromData({
+                                                  ...createChatsRecordData(
+                                                    from: currentUserReference,
+                                                    to: widget
+                                                        .sellerInfo?.reference,
+                                                    userA: currentUserReference,
+                                                    userB: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'sendTime':
+                                                          DateTime.now(),
+                                                      'users': [
+                                                        currentUserReference
+                                                      ],
+                                                    },
+                                                  ),
+                                                }, chatsRecordReference1);
+                                                unawaited(
+                                                  () async {
+                                                    await _model
+                                                        .newchat1!.reference
+                                                        .update({
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'users': FieldValue
+                                                              .arrayUnion([
+                                                            widget.sellerInfo
+                                                                ?.reference
+                                                          ]),
+                                                        },
+                                                      ),
+                                                    });
+                                                  }(),
+                                                );
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 1000));
+                                                _model.userquery1 =
+                                                    await queryChatsRecordOnce(
+                                                  queryBuilder: (chatsRecord) =>
+                                                      chatsRecord.where(
+                                                    'users',
+                                                    arrayContains:
+                                                        currentUserReference,
+                                                  ),
+                                                );
+                                                _model.sellerquery1 =
+                                                    await queryChatsRecordOnce(
+                                                  queryBuilder: (chatsRecord) =>
+                                                      chatsRecord.where(
+                                                    'users',
+                                                    arrayContains: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                );
+                                                _model.theChat1 =
+                                                    await actions.getChatDoc(
+                                                  _model.userquery1?.toList(),
+                                                  _model.sellerquery1?.toList(),
+                                                );
+
+                                                context.pushNamed(
+                                                  'chat_Details',
+                                                  queryParameters: {
+                                                    'chatRef': serializeParam(
+                                                      _model.theChat1,
+                                                      ParamType.Document,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    'chatRef': _model.theChat1,
+                                                  },
+                                                );
+                                              } else if (!(_model.sellerquery !=
+                                                      null &&
+                                                  (_model.sellerquery)!
+                                                      .isNotEmpty)) {
+                                                var chatsRecordReference2 =
+                                                    ChatsRecord.collection
+                                                        .doc();
+                                                await chatsRecordReference2
+                                                    .set({
+                                                  ...createChatsRecordData(
+                                                    from: currentUserReference,
+                                                    to: widget
+                                                        .sellerInfo?.reference,
+                                                    userA: currentUserReference,
+                                                    userB: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'sendTime': FieldValue
+                                                          .serverTimestamp(),
+                                                      'users': [
+                                                        currentUserReference
+                                                      ],
+                                                    },
+                                                  ),
+                                                });
+                                                _model.newchatCopy = ChatsRecord
+                                                    .getDocumentFromData({
+                                                  ...createChatsRecordData(
+                                                    from: currentUserReference,
+                                                    to: widget
+                                                        .sellerInfo?.reference,
+                                                    userA: currentUserReference,
+                                                    userB: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'sendTime':
+                                                          DateTime.now(),
+                                                      'users': [
+                                                        currentUserReference
+                                                      ],
+                                                    },
+                                                  ),
+                                                }, chatsRecordReference2);
+                                                unawaited(
+                                                  () async {
+                                                    await _model
+                                                        .newchatCopy!.reference
+                                                        .update({
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'users': FieldValue
+                                                              .arrayUnion([
+                                                            widget.sellerInfo
+                                                                ?.reference
+                                                          ]),
+                                                        },
+                                                      ),
+                                                    });
+                                                  }(),
+                                                );
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 1000));
+                                                _model.userquery2Copy =
+                                                    await queryChatsRecordOnce(
+                                                  queryBuilder: (chatsRecord) =>
+                                                      chatsRecord.where(
+                                                    'users',
+                                                    arrayContains:
+                                                        currentUserReference,
+                                                  ),
+                                                );
+                                                _model.sellerquery2Copy =
+                                                    await queryChatsRecordOnce(
+                                                  queryBuilder: (chatsRecord) =>
+                                                      chatsRecord.where(
+                                                    'users',
+                                                    arrayContains: widget
+                                                        .sellerInfo?.reference,
+                                                  ),
+                                                );
+                                                _model.theChat2Copy =
+                                                    await actions.getChatDoc(
+                                                  _model.userquery2Copy
+                                                      ?.toList(),
+                                                  _model.sellerquery2Copy
+                                                      ?.toList(),
+                                                );
+
+                                                context.pushNamed(
+                                                  'chat_Details',
+                                                  queryParameters: {
+                                                    'chatRef': serializeParam(
+                                                      _model.theChat2Copy,
+                                                      ParamType.Document,
+                                                    ),
+                                                  }.withoutNulls,
+                                                  extra: <String, dynamic>{
+                                                    'chatRef':
+                                                        _model.theChat2Copy,
+                                                  },
+                                                );
+                                              } else {
+                                                _model.commonExistCopy =
+                                                    await actions.commonExist(
+                                                  _model.userquery?.toList(),
+                                                  _model.sellerquery?.toList(),
+                                                );
+                                                if (!_model.commonExistCopy!) {
+                                                  var chatsRecordReference3 =
+                                                      ChatsRecord.collection
+                                                          .doc();
+                                                  await chatsRecordReference3
+                                                      .set({
+                                                    ...createChatsRecordData(
+                                                      from:
+                                                          currentUserReference,
+                                                      to: widget.sellerInfo
+                                                          ?.reference,
+                                                      userA:
+                                                          currentUserReference,
+                                                      userB: widget.sellerInfo
+                                                          ?.reference,
+                                                    ),
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'sendTime': FieldValue
+                                                            .serverTimestamp(),
+                                                        'users': [
+                                                          currentUserReference
+                                                        ],
+                                                      },
+                                                    ),
+                                                  });
+                                                  _model.newchat2Copy =
+                                                      ChatsRecord
+                                                          .getDocumentFromData({
+                                                    ...createChatsRecordData(
+                                                      from:
+                                                          currentUserReference,
+                                                      to: widget.sellerInfo
+                                                          ?.reference,
+                                                      userA:
+                                                          currentUserReference,
+                                                      userB: widget.sellerInfo
+                                                          ?.reference,
+                                                    ),
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'sendTime':
+                                                            DateTime.now(),
+                                                        'users': [
+                                                          currentUserReference
+                                                        ],
+                                                      },
+                                                    ),
+                                                  }, chatsRecordReference3);
+                                                  unawaited(
+                                                    () async {
+                                                      await _model.newchat2Copy!
+                                                          .reference
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'users': FieldValue
+                                                                .arrayUnion([
+                                                              widget.sellerInfo
+                                                                  ?.reference
+                                                            ]),
+                                                          },
+                                                        ),
+                                                      });
+                                                    }(),
+                                                  );
+                                                  await Future.delayed(
+                                                      const Duration(
+                                                          milliseconds: 1000));
+                                                  _model.userquery3Copy =
+                                                      await queryChatsRecordOnce(
+                                                    queryBuilder:
+                                                        (chatsRecord) =>
+                                                            chatsRecord.where(
+                                                      'users',
+                                                      arrayContains:
+                                                          currentUserReference,
+                                                    ),
+                                                  );
+                                                  _model.sellerquery3Copy =
+                                                      await queryChatsRecordOnce(
+                                                    queryBuilder:
+                                                        (chatsRecord) =>
+                                                            chatsRecord.where(
+                                                      'users',
+                                                      arrayContains: widget
+                                                          .sellerInfo
+                                                          ?.reference,
+                                                    ),
+                                                  );
+                                                  _model.theChat3Copy =
+                                                      await actions.getChatDoc(
+                                                    _model.userquery3Copy
+                                                        ?.toList(),
+                                                    _model.sellerquery3Copy
+                                                        ?.toList(),
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'chat_Details',
+                                                    queryParameters: {
+                                                      'chatRef': serializeParam(
+                                                        _model.theChat3Copy,
+                                                        ParamType.Document,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      'chatRef':
+                                                          _model.theChat3Copy,
+                                                    },
+                                                  );
+                                                } else {
+                                                  _model.theChatCopy =
+                                                      await actions.getChatDoc(
+                                                    _model.userquery?.toList(),
+                                                    _model.sellerquery
+                                                        ?.toList(),
+                                                  );
+
+                                                  context.pushNamed(
+                                                    'chat_Details',
+                                                    queryParameters: {
+                                                      'chatRef': serializeParam(
+                                                        _model.theChatCopy,
+                                                        ParamType.Document,
+                                                      ),
+                                                    }.withoutNulls,
+                                                    extra: <String, dynamic>{
+                                                      'chatRef':
+                                                          _model.theChatCopy,
+                                                    },
+                                                  );
+                                                }
+                                              }
+
+                                              setState(() {});
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ).animateOnPageLoad(
                                     animationsMap['rowOnPageLoadAnimation']!),
@@ -439,7 +817,7 @@ class _SellerProfileWidgetState extends State<SellerProfileWidget>
                                     ),
                                     Padding(
                                       padding: const EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 20.0),
+                                          0.0, 0.0, 0.0, 6.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -473,7 +851,8 @@ class _SellerProfileWidgetState extends State<SellerProfileWidget>
                                                     4.0, 4.0, 0.0, 0.0),
                                             child: Text(
                                               valueOrDefault<String>(
-                                                widget.sellerInfo?.phoneNumber,
+                                                functions.getPhone(widget
+                                                    .sellerInfo?.phoneNumber),
                                                 'not set',
                                               ),
                                               style:
@@ -496,480 +875,6 @@ class _SellerProfileWidgetState extends State<SellerProfileWidget>
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            if (widget.sellerInfo?.reference !=
-                                                currentUserReference)
-                                              Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        16.0, 0.0, 24.0, 20.0),
-                                                child: FFButtonWidget(
-                                                  onPressed: () async {
-                                                    if (!(_model.userquery !=
-                                                            null &&
-                                                        (_model.userquery)!
-                                                            .isNotEmpty)) {
-                                                      var chatsRecordReference1 =
-                                                          ChatsRecord.collection
-                                                              .doc();
-                                                      await chatsRecordReference1
-                                                          .set({
-                                                        ...createChatsRecordData(
-                                                          from:
-                                                              currentUserReference,
-                                                          to: widget.sellerInfo
-                                                              ?.reference,
-                                                          userA:
-                                                              currentUserReference,
-                                                          userB: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'sendTime': FieldValue
-                                                                .serverTimestamp(),
-                                                            'users': [
-                                                              currentUserReference
-                                                            ],
-                                                          },
-                                                        ),
-                                                      });
-                                                      _model.newchat1 = ChatsRecord
-                                                          .getDocumentFromData({
-                                                        ...createChatsRecordData(
-                                                          from:
-                                                              currentUserReference,
-                                                          to: widget.sellerInfo
-                                                              ?.reference,
-                                                          userA:
-                                                              currentUserReference,
-                                                          userB: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'sendTime':
-                                                                DateTime.now(),
-                                                            'users': [
-                                                              currentUserReference
-                                                            ],
-                                                          },
-                                                        ),
-                                                      }, chatsRecordReference1);
-                                                      unawaited(
-                                                        () async {
-                                                          await _model.newchat1!
-                                                              .reference
-                                                              .update({
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'users': FieldValue
-                                                                    .arrayUnion([
-                                                                  widget
-                                                                      .sellerInfo
-                                                                      ?.reference
-                                                                ]),
-                                                              },
-                                                            ),
-                                                          });
-                                                        }(),
-                                                      );
-                                                      await Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  1000));
-                                                      _model.userquery1 =
-                                                          await queryChatsRecordOnce(
-                                                        queryBuilder:
-                                                            (chatsRecord) =>
-                                                                chatsRecord
-                                                                    .where(
-                                                          'users',
-                                                          arrayContains:
-                                                              currentUserReference,
-                                                        ),
-                                                      );
-                                                      _model.sellerquery1 =
-                                                          await queryChatsRecordOnce(
-                                                        queryBuilder:
-                                                            (chatsRecord) =>
-                                                                chatsRecord
-                                                                    .where(
-                                                          'users',
-                                                          arrayContains: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                      );
-                                                      _model.theChat1 =
-                                                          await actions
-                                                              .getChatDoc(
-                                                        _model.userquery1
-                                                            ?.toList(),
-                                                        _model.sellerquery1
-                                                            ?.toList(),
-                                                      );
-
-                                                      context.pushNamed(
-                                                        'chat_Details',
-                                                        queryParameters: {
-                                                          'chatRef':
-                                                              serializeParam(
-                                                            _model.theChat1,
-                                                            ParamType.Document,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          'chatRef':
-                                                              _model.theChat1,
-                                                        },
-                                                      );
-                                                    } else if (!(_model
-                                                                .sellerquery !=
-                                                            null &&
-                                                        (_model.sellerquery)!
-                                                            .isNotEmpty)) {
-                                                      var chatsRecordReference2 =
-                                                          ChatsRecord.collection
-                                                              .doc();
-                                                      await chatsRecordReference2
-                                                          .set({
-                                                        ...createChatsRecordData(
-                                                          from:
-                                                              currentUserReference,
-                                                          to: widget.sellerInfo
-                                                              ?.reference,
-                                                          userA:
-                                                              currentUserReference,
-                                                          userB: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'sendTime': FieldValue
-                                                                .serverTimestamp(),
-                                                            'users': [
-                                                              currentUserReference
-                                                            ],
-                                                          },
-                                                        ),
-                                                      });
-                                                      _model.newchat = ChatsRecord
-                                                          .getDocumentFromData({
-                                                        ...createChatsRecordData(
-                                                          from:
-                                                              currentUserReference,
-                                                          to: widget.sellerInfo
-                                                              ?.reference,
-                                                          userA:
-                                                              currentUserReference,
-                                                          userB: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'sendTime':
-                                                                DateTime.now(),
-                                                            'users': [
-                                                              currentUserReference
-                                                            ],
-                                                          },
-                                                        ),
-                                                      }, chatsRecordReference2);
-                                                      unawaited(
-                                                        () async {
-                                                          await _model.newchat!
-                                                              .reference
-                                                              .update({
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'users': FieldValue
-                                                                    .arrayUnion([
-                                                                  widget
-                                                                      .sellerInfo
-                                                                      ?.reference
-                                                                ]),
-                                                              },
-                                                            ),
-                                                          });
-                                                        }(),
-                                                      );
-                                                      await Future.delayed(
-                                                          const Duration(
-                                                              milliseconds:
-                                                                  1000));
-                                                      _model.userquery2 =
-                                                          await queryChatsRecordOnce(
-                                                        queryBuilder:
-                                                            (chatsRecord) =>
-                                                                chatsRecord
-                                                                    .where(
-                                                          'users',
-                                                          arrayContains:
-                                                              currentUserReference,
-                                                        ),
-                                                      );
-                                                      _model.sellerquery2 =
-                                                          await queryChatsRecordOnce(
-                                                        queryBuilder:
-                                                            (chatsRecord) =>
-                                                                chatsRecord
-                                                                    .where(
-                                                          'users',
-                                                          arrayContains: widget
-                                                              .sellerInfo
-                                                              ?.reference,
-                                                        ),
-                                                      );
-                                                      _model.theChat2 =
-                                                          await actions
-                                                              .getChatDoc(
-                                                        _model.userquery2
-                                                            ?.toList(),
-                                                        _model.sellerquery2
-                                                            ?.toList(),
-                                                      );
-
-                                                      context.pushNamed(
-                                                        'chat_Details',
-                                                        queryParameters: {
-                                                          'chatRef':
-                                                              serializeParam(
-                                                            _model.theChat2,
-                                                            ParamType.Document,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          'chatRef':
-                                                              _model.theChat2,
-                                                        },
-                                                      );
-                                                    } else {
-                                                      _model.commonExist =
-                                                          await actions
-                                                              .commonExist(
-                                                        _model.userquery
-                                                            ?.toList(),
-                                                        _model.sellerquery
-                                                            ?.toList(),
-                                                      );
-                                                      if (!_model
-                                                          .commonExist!) {
-                                                        var chatsRecordReference3 =
-                                                            ChatsRecord
-                                                                .collection
-                                                                .doc();
-                                                        await chatsRecordReference3
-                                                            .set({
-                                                          ...createChatsRecordData(
-                                                            from:
-                                                                currentUserReference,
-                                                            to: widget
-                                                                .sellerInfo
-                                                                ?.reference,
-                                                            userA:
-                                                                currentUserReference,
-                                                            userB: widget
-                                                                .sellerInfo
-                                                                ?.reference,
-                                                          ),
-                                                          ...mapToFirestore(
-                                                            {
-                                                              'sendTime': FieldValue
-                                                                  .serverTimestamp(),
-                                                              'users': [
-                                                                currentUserReference
-                                                              ],
-                                                            },
-                                                          ),
-                                                        });
-                                                        _model.newchat2 =
-                                                            ChatsRecord
-                                                                .getDocumentFromData({
-                                                          ...createChatsRecordData(
-                                                            from:
-                                                                currentUserReference,
-                                                            to: widget
-                                                                .sellerInfo
-                                                                ?.reference,
-                                                            userA:
-                                                                currentUserReference,
-                                                            userB: widget
-                                                                .sellerInfo
-                                                                ?.reference,
-                                                          ),
-                                                          ...mapToFirestore(
-                                                            {
-                                                              'sendTime':
-                                                                  DateTime
-                                                                      .now(),
-                                                              'users': [
-                                                                currentUserReference
-                                                              ],
-                                                            },
-                                                          ),
-                                                        }, chatsRecordReference3);
-                                                        unawaited(
-                                                          () async {
-                                                            await _model
-                                                                .newchat2!
-                                                                .reference
-                                                                .update({
-                                                              ...mapToFirestore(
-                                                                {
-                                                                  'users':
-                                                                      FieldValue
-                                                                          .arrayUnion([
-                                                                    widget
-                                                                        .sellerInfo
-                                                                        ?.reference
-                                                                  ]),
-                                                                },
-                                                              ),
-                                                            });
-                                                          }(),
-                                                        );
-                                                        await Future.delayed(
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    1000));
-                                                        _model.userquery3 =
-                                                            await queryChatsRecordOnce(
-                                                          queryBuilder:
-                                                              (chatsRecord) =>
-                                                                  chatsRecord
-                                                                      .where(
-                                                            'users',
-                                                            arrayContains:
-                                                                currentUserReference,
-                                                          ),
-                                                        );
-                                                        _model.sellerquery3 =
-                                                            await queryChatsRecordOnce(
-                                                          queryBuilder:
-                                                              (chatsRecord) =>
-                                                                  chatsRecord
-                                                                      .where(
-                                                            'users',
-                                                            arrayContains:
-                                                                widget
-                                                                    .sellerInfo
-                                                                    ?.reference,
-                                                          ),
-                                                        );
-                                                        _model.theChat3 =
-                                                            await actions
-                                                                .getChatDoc(
-                                                          _model.userquery3
-                                                              ?.toList(),
-                                                          _model.sellerquery3
-                                                              ?.toList(),
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'chat_Details',
-                                                          queryParameters: {
-                                                            'chatRef':
-                                                                serializeParam(
-                                                              _model.theChat3,
-                                                              ParamType
-                                                                  .Document,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'chatRef':
-                                                                _model.theChat3,
-                                                          },
-                                                        );
-                                                      } else {
-                                                        _model.theChat =
-                                                            await actions
-                                                                .getChatDoc(
-                                                          _model.userquery
-                                                              ?.toList(),
-                                                          _model.sellerquery
-                                                              ?.toList(),
-                                                        );
-
-                                                        context.pushNamed(
-                                                          'chat_Details',
-                                                          queryParameters: {
-                                                            'chatRef':
-                                                                serializeParam(
-                                                              _model.theChat,
-                                                              ParamType
-                                                                  .Document,
-                                                            ),
-                                                          }.withoutNulls,
-                                                          extra: <String,
-                                                              dynamic>{
-                                                            'chatRef':
-                                                                _model.theChat,
-                                                          },
-                                                        );
-                                                      }
-                                                    }
-
-                                                    setState(() {});
-                                                  },
-                                                  text: 'Talk to Seller',
-                                                  options: FFButtonOptions(
-                                                    width: 150.0,
-                                                    height: 45.0,
-                                                    padding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    iconPadding:
-                                                        const EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                0.0, 0.0),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    textStyle: FlutterFlowTheme
-                                                            .of(context)
-                                                        .titleSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmallFamily,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmallFamily),
-                                                        ),
-                                                    elevation: 3.0,
-                                                    borderSide: const BorderSide(
-                                                      color: Colors.transparent,
-                                                      width: 1.0,
-                                                    ),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            12.0),
-                                                  ),
-                                                ),
-                                              ),
-                                          ],
-                                        ),
-                                      ],
                                     ),
                                   ],
                                 ),

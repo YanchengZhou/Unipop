@@ -8,7 +8,6 @@ import '/auth/base_auth_user_provider.dart';
 
 import '/index.dart';
 import '/main.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 export 'package:go_router/go_router.dart';
@@ -81,11 +80,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/',
           builder: (context, _) =>
               appStateNotifier.loggedIn ? const NavBarPage() : const SignInUpWidget(),
-        ),
-        FFRoute(
-          name: 'Sign_in',
-          path: '/signIn',
-          builder: (context, params) => const SignInWidget(),
         ),
         FFRoute(
           name: 'profile',
@@ -163,16 +157,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const TestTryWidget(),
         ),
         FFRoute(
-          name: 'Home18Travel',
-          path: '/home18Travel',
-          builder: (context, params) => const Home18TravelWidget(),
-        ),
-        FFRoute(
-          name: 'Details03ProductFood',
-          path: '/details03ProductFood',
-          builder: (context, params) => const Details03ProductFoodWidget(),
-        ),
-        FFRoute(
           name: 'productDetailCopy',
           path: '/productDetailCopy',
           asyncParams: {
@@ -225,11 +209,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
-        ),
-        FFRoute(
-          name: 'Profile18UserDetailsOther',
-          path: '/profile18UserDetailsOther',
-          builder: (context, params) => const Profile18UserDetailsOtherWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -415,15 +394,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 50.0,
-                    height: 50.0,
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                        FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/unipop..png',
+                    fit: BoxFit.cover,
                   ),
                 )
               : page;
@@ -489,4 +464,14 @@ class RootPageContext {
         value: RootPageContext(true, errorRoute),
         child: child,
       );
+}
+
+extension GoRouterLocationExtension on GoRouter {
+  String getCurrentLocation() {
+    final RouteMatch lastMatch = routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : routerDelegate.currentConfiguration;
+    return matchList.uri.toString();
+  }
 }

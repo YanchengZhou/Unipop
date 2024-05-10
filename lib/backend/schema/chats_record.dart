@@ -87,6 +87,11 @@ class ChatsRecord extends FirestoreRecord {
   int get chatId => _chatId ?? 0;
   bool hasChatId() => _chatId != null;
 
+  // "group_chat_id" field.
+  int? _groupChatId;
+  int get groupChatId => _groupChatId ?? 0;
+  bool hasGroupChatId() => _groupChatId != null;
+
   void _initializeFields() {
     _from = snapshotData['from'] as DocumentReference?;
     _to = snapshotData['to'] as DocumentReference?;
@@ -103,6 +108,7 @@ class ChatsRecord extends FirestoreRecord {
         snapshotData['last_message_sent_by'] as DocumentReference?;
     _lastMessageSeenBy = getDataList(snapshotData['last_message_seen_by']);
     _chatId = castToType<int>(snapshotData['chat_id']);
+    _groupChatId = castToType<int>(snapshotData['group_chat_id']);
   }
 
   static CollectionReference get collection =>
@@ -151,6 +157,7 @@ Map<String, dynamic> createChatsRecordData({
   DateTime? lastMessageTime,
   DocumentReference? lastMessageSentBy,
   int? chatId,
+  int? groupChatId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -166,6 +173,7 @@ Map<String, dynamic> createChatsRecordData({
       'last_message_time': lastMessageTime,
       'last_message_sent_by': lastMessageSentBy,
       'chat_id': chatId,
+      'group_chat_id': groupChatId,
     }.withoutNulls,
   );
 
@@ -191,7 +199,8 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
         e1?.lastMessageTime == e2?.lastMessageTime &&
         e1?.lastMessageSentBy == e2?.lastMessageSentBy &&
         listEquality.equals(e1?.lastMessageSeenBy, e2?.lastMessageSeenBy) &&
-        e1?.chatId == e2?.chatId;
+        e1?.chatId == e2?.chatId &&
+        e1?.groupChatId == e2?.groupChatId;
   }
 
   @override
@@ -209,7 +218,8 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
         e?.lastMessageTime,
         e?.lastMessageSentBy,
         e?.lastMessageSeenBy,
-        e?.chatId
+        e?.chatId,
+        e?.groupChatId
       ]);
 
   @override
